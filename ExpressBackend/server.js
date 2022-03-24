@@ -79,7 +79,13 @@ backend.put("/music/:id", function(req,res){
 
 // 5-8- DELETE ROUTE      ///////////////////////////////////////////////////
 
-
+backend.delete("/music/:id", function(req,res){
+     Album.findOneAndDelete (  { _id:req.params.id  } , function(err, album) {
+            if(err){return res.status(400).json( { success : false , error: err})   }
+            if(!album){ return res.status(404).json( { success : false , error: "Album not found"})   }
+            return res .status(200).json( { success : true , data:album}) 
+     });
+});
 
 
 //GET LIST ALL ROUTE      ///////////////////////////////////////////////////
