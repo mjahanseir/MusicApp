@@ -56,7 +56,27 @@ backend.post('/music', function(req,res){
                 .json( { success:true,id: album._id,message:"Alnum created."} )   })
         .catch(error => {return res.status(400).json( {error, message:"Album not created"});  })
 });
+
+
 // 5-7- UPDATE ROUTE
+backend.put("/music/:id", function(req,res){
+       const body= req.body;
+       if(!body){ return res.status(400).json({success:false , error:"You must provide some data to update."}) }
+       // FIND the docyment to be update in the database
+       Album.findOne (  { _id:req.params.id  } , (err, album) => {
+              if(err){ return res .status(400).json( { success : false , error: err}) }
+               if(!Album){ return res.status(404).json( { success : false , error: "Album not found"}) }
+                ///////////////   Update all thte info in browser album from the body album
+                album.album= body.album;
+                album.artist= body.artist;
+                album.year= body.year;
+                album.artwork= body.artwork;
+              album .save()
+                    .then(()=>{  return res.status(200).json( {success:true, id: album._id, message:"Album updated."}) })
+                    .catch(error => { return res.status(404).json({error,message:"Album not updated"}); })
+        }) //END OF findOne
+})//END OF put
+
 // 5-8- DELETE ROUTE
 
 
