@@ -23,13 +23,13 @@ const musicSchema= new mongoose.schema({
 // CREATE MODEL OBJECT BASED ON THE ABOVE SCHEMA OBJECT
 const Album = mongoose.model("Album", musicSchema);
 ///////////     5-     Routes      ///////////////////////////////////////////////////
-// 5-1- ROUTES
-// 5-2- INDEX ROUTE
+// 5-1- ROUTES            ///////////////////////////////////////////////////
+// 5-2- INDEX ROUTE      ///////////////////////////////////////////////////
 backend.get(  '/', function(req,res){
     res.redirect("/music");
 })
-// 5-3- SHOW ROUTES
-// 5-4- GET ALL
+// 5-3- SHOW ROUTES     ///////////////////////////////////////////////////
+// 5-4- GET ALL        ///////////////////////////////////////////////////
 backend.get(  '/music', function(req,res){
     Album.find({} , function( err , albums ){
         if(err) {  return res .status(400).json( { success : false , error : err } );}
@@ -37,14 +37,14 @@ backend.get(  '/music', function(req,res){
         return res .status(200).json( { success : true , data : albums} ); });
 })
 
-// 5-5- GET ONE
+// 5-5- GET ONE        ///////////////////////////////////////////////////
 backend.get('/music/:id' , function(req, res){
     Album.findById(req.params.id, function(err, album){
         if(err){return res.status(400).json( { success : false, error:err } );}
         if(!album){return res.status(404).json( { success : false , error: "Album not found." } ); }
         return res.status(200).json( { success : true ,  data: album});})
 })
-// 5-6- CREATE ROUTE
+// 5-6- CREATE ROUTE      ///////////////////////////////////////////////////
 backend.post('/music', function(req,res){
     const body = req.body;
     if(!body){ return res.status(400).json(  { success: false , error: "You must specify album information"});}
@@ -58,7 +58,7 @@ backend.post('/music', function(req,res){
 });
 
 
-// 5-7- UPDATE ROUTE
+// 5-7- UPDATE ROUTE      ///////////////////////////////////////////////////
 backend.put("/music/:id", function(req,res){
        const body= req.body;
        if(!body){ return res.status(400).json({success:false , error:"You must provide some data to update."}) }
@@ -77,12 +77,12 @@ backend.put("/music/:id", function(req,res){
         }) //END OF findOne
 })//END OF put
 
-// 5-8- DELETE ROUTE
+// 5-8- DELETE ROUTE      ///////////////////////////////////////////////////
 
 
 
 
-//GET LIST ALL ROUTE
+//GET LIST ALL ROUTE      ///////////////////////////////////////////////////
 backend.listen(3001, function(){
     console.log("Server started successfully");
 
