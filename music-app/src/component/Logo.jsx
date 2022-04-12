@@ -44,14 +44,33 @@ const Wrapper= styled.a.attrs({
 class Logo extends Component {
     render() {
         return (
-            <Wrapper>
-
+            <Wrapper href="www.google.ca">
+                <img src={logo} width="50" height="50" alt=""/>
             </Wrapper>
         );
     }
 }
+// Remember, Wrapper is an <a> tag. so <a> tags look like:
+// <a href=""> some text or an image </a>
+// So we'll need to add those things but within Wrapper...
 
+// <a> is same as <Wrapper> therefore:
+//  <a href="   "> would be <Wrapper href="   "> you can put whatever you
+//  like in the "" for a URL
 
+//  then between the tags is the same as in between <a> and </a> where you put
+//  link text or, in our case, link image
+
+//   so add an <img tag with three attributes inside it for height width and alt
+//   set the height and width to 50 and the alt to whatever you like
+
+//Remember one of the things we get from using .jsx rather than just .js...
+// the ability to directly reference values in your code as embedded objects.
+// We want to use the logo image here so we can just set src= to logo but
+// make sure its enclosed in {}
+
+// Note that its lowercase to point to logo that we imported at the top and
+// not Logo our component.
 
 export default Logo;
 
