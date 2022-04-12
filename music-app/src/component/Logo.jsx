@@ -5,7 +5,7 @@
 // then import the svg file as '../logo.svg'
 
 
-import React, {Component} from "react";
+import React, {Component, createContext} from "react";
 import styled from "styled-components";
 import logo from "../logo.svg";
 
@@ -24,8 +24,34 @@ import logo from "../logo.svg";
 // the <a> component is Wrapper
 // the class, to set is 'navbar-brand' so inside () for styled.a.attrs
 // is {} which then has a className: 'navbar-brand'
+
 const Wrapper= styled.a.attrs({
     className: 'navbar-brand'
 })``  //////--->>>>  after the }) are two back ticks
 //In this case its empty but this part of the syntax allows us to also
 // set separate style on the component as well after setting a class
+
+// we'll do that in one of the other navbar files
+
+// So now we'll create our logo using Wrapper.
+//create a class called Logo that extends Component.
+//add both render() and then return inside of that as our usual component
+// starting point.
+
+//add your Wrapper component inside of return (   )
+// Its a react components so <Wrapper> and the ending tag as well and then
+// we'll add some more code to it
+class Logo extends Component {
+    render() {
+        return (
+            <Wrapper>
+
+            </Wrapper>
+        );
+    }
+}
+
+
+
+export default Logo;
+
