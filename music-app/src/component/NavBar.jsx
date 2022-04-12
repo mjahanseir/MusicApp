@@ -43,5 +43,16 @@ const Nav= styled.div.attrs({
 // Note the last two are done as self terminating tags  <    />
 // rather than a pair like the others
 
-
+class NavBar extends Component {
+    render() {
+        return (
+            <Container>
+                <Nav>
+                    <Logo />
+                    <Link />
+                </Nav>
+            </Container>
+        );
+    }
+}
 export default NavBar;
