@@ -8,7 +8,6 @@ const musicSchema = new mongoose.Schema({
   year: { type: Number, required: false },
   artwork: { type: String, required: false },
 });
-
 ///////////     4-     CREATE MODEL OBJECT      //////////////////////////////////////
 // CREATE MODEL OBJECT BASED ON THE ABOVE SCHEMA OBJECT
 

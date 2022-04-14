@@ -24,8 +24,8 @@ getMusicByID = async (req, res) => {
     }
     if (!album) {
       return res
-        .status(404)
-        .json({ success: false, error: "Album not found." });
+          .status(404)
+          .json({ success: false, error: "Album not found." });
     }
     return res.status(200).json({ success: true, data: album });
   });
@@ -37,31 +37,31 @@ createAlbum = (req, res) => {
   const body = req.body;
   if (!body) {
     return res
-      .status(400)
-      .json({ success: false, error: "You must specify album information" });
+        .status(400)
+        .json({ success: false, error: "You must specify album information" });
   }
 
   const album = new Album(body);
 
   if (!album) {
     return res
-      .status(400)
-      .json({ success: false, error: "Album creation failed" });
+        .status(400)
+        .json({ success: false, error: "Album creation failed" });
   }
 
   album
-    .save()
-    //we have 2 : then and catch for get info for save a kind of try/catch in java
-    .then(() => {
-      return res.status(201).json({
-        success: true,
-        id: album._id,
-        message: "Album created.",
+      .save()
+      //we have 2 : then and catch for get info for save a kind of try/catch in java
+      .then(() => {
+        return res.status(201).json({
+          success: true,
+          id: album._id,
+          message: "Album created.",
+        });
+      })
+      .catch((error) => {
+        return res.status(400).json({ error, message: "Album not created" });
       });
-    })
-    .catch((error) => {
-      return res.status(400).json({ error, message: "Album not created" });
-    });
 };
 
 /////////////////////////////////             updateAlbum             ////////////////////////////////////////////////////////
@@ -70,8 +70,8 @@ updateAlbum = async (req, res) => {
   const body = req.body;
   if (!body) {
     return res
-      .status(400)
-      .json({ success: false, error: "You must provide some data to update." });
+        .status(400)
+        .json({ success: false, error: "You must provide some data to update." });
   }
   // FIND the docyment to be update in the database
   Album.findOne({ _id: req.params.id }, (err, album) => {
@@ -90,17 +90,17 @@ updateAlbum = async (req, res) => {
     album.artwork = body.artwork;
 
     album
-      .save()
-      .then(() => {
-        return res.status(200).json({
-          success: true,
-          id: album._id,
-          message: "Album updated.",
+        .save()
+        .then(() => {
+          return res.status(200).json({
+            success: true,
+            id: album._id,
+            message: "Album updated.",
+          });
+        })
+        .catch((error) => {
+          return res.status(404).json({ error, message: "Album not updated" });
         });
-      })
-      .catch((error) => {
-        return res.status(404).json({ error, message: "Album not updated" });
-      });
   }); //END OF findOne
 };
 

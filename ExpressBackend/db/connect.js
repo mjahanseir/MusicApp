@@ -4,13 +4,13 @@ const mongoose = require("mongoose");
 const DB = "mongodb://192.168.75.128:27017/music_app";
 
 mongoose
-  .connect(DB)
-  .then(() => {
-    console.log("Batabase connection  successful.");
-  })
-  .catch((e) => {
-    console.error("connection error", e.message);
-  });
+    .connect(DB)
+    .then(() => {
+        console.log("Batabase connection  successful.");
+    })
+    .catch((e) => {
+        console.error("connection error", e.message);
+    });
 
 const dbase = mongoose.connection;
 
