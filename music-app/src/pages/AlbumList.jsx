@@ -18,14 +18,35 @@ const Delete =  styled.div`
 
 
 
-class AlbumList extends Component {
-    constructor(props) {
+
+class AlbumList extends Component{
+    constructor(props){
         super(props)
-        this.state = {
+        this.state={
             albums: [],
-            isLoading: false
+            isLoading:false
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    render(){
+
+        return(
+            <Wrapper>
+                { showTable && (
+                    <ReactTable
+                        data={albums}
+                        columns={columns}
+                        isLoading={isLoading}
+                        defaultPageSize={10}
+                        showPageSizeOption={true}
+                        minRows={0}
+                    />
+                )}
+            </Wrapper>
+        )
+    }
 }
 export default AlbumList;
