@@ -19,7 +19,7 @@
 
 
 import React, {Component} from 'react';
-import Link from "./Link";
+import Link from "./Links";
 import Logo from "./Logo";
 import NavBar from "./NavBar";
 

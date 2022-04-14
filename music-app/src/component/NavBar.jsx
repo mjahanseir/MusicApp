@@ -12,7 +12,7 @@
 
 import React, {Component} from 'react';
 import styled from "styled-components";
-import Link from "./Link";
+import Link from "./Links";
 import Logo from "./Logo";
 const Container= styled.div.attrs({
     className:'container'
