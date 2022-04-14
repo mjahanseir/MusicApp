@@ -5,14 +5,14 @@ import 'react-table/react-table.css'
 import apis from'../api'
 
 /////////////////////////set wrapper and other styles
-const Wrapper =  styled.div`padding: 0 40px 0 40px;`
+const Wrapper =  styled.div`padding= 0 40px 0 40px;`
 const Update =  styled.div`
-    color:#0000ff;
-    cursor:pointer;
+  color:#0000ff;
+  cursor:pointer;
 `
 const Delete =  styled.div`
-    color:#ff0000;
-    cursor: pointer;
+  color:#ff0000;
+  cursor: pointer;
 `
 /////////////////////////////////////////////////////////
 /////////////////// Create a components
@@ -51,14 +51,57 @@ class DeleteAlbum extends Component{
 
 
 class AlbumList extends Component{
-    constructor(props) {
+    constructor(props){
         super(props)
-        this.state = {
+        this.state={
             albums: [],
-            isLoading: false
+            isLoading:false
         }
     }
+    ///////////////////////////////////////////////////////////////////////////////////////////////
 
+    /////////////////// 1- use/access api to get album list
+    /////////////////// 2- use life cycle method for data load component DID MOUNT
+    ///////////////////         - access api to get array of ALBUMS
+    ///////////////////         - Populate this.stat.albums
+
+    ///////////////////  3- render()
+    ///////////////////     - get a copy of this.state
+    ///////////////////     - create columns for react-table
+    ///////////////////     - const columns=[
+    ///////////////////                       {
+    ///////////////////                         header      -> column header
+    ///////////////////                         accessor    -> data filed we want to display
+    ///////////////////                         style
+    ///////////////////                         width
+    ///////////////////                         cell        -> specify who we plug in data for a cell
+    ///////////////////                        }
+    ///////////////////                      ]
+
+    ///////////////////                      in return section show data
+
+
+    ///////////////////                   ___________________________________________
+    ///////////////////                   |   name    artist   year                  |
+    ///////////////////                   |__________________________________________|
+    ///////////////////                                               buttons components
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    componentDidMount=async()=>{
+        this.setState( {  isLoading:true } )
+
+        await apis.getAllAlbums()
+            .then(
+                albums=>{
+                    this.setState({
+                        albums:albums.data.data,
+                        isLoading:false
+                    })
+                }
+            )
+    }
     render(){
         const {albums, isLoading} = this.state;
 
