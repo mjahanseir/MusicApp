@@ -1,20 +1,28 @@
 const express = require("express");
+const app = express();
 const router = express.Router();
-const MusicCtrl = require("../Controllers/controller");
 
-// 5-3- SHOW ROUTES    / 5-4- GET ALL
-router.get("/music", MusicCtrl.getAllMusic);
+const MusicCtrl = require("../controllers/controller")
 
-// 5-6- GET ONE
-router.get("/music/:id", MusicCtrl.getMusicByID);
 
-// 5-5- CREATE ROUTE
-router.post("/music", MusicCtrl.createAlbum);
 
-// 5-7- UPDATE ROUTE
-router.put("/music/:id", MusicCtrl.updateAlbum); //END OF put
+//Show Routes
+// Get All
+router.get("/music",MusicCtrl.getAllMusic )
 
-// 5-8- DELETE ROUTE       //one rout and http delete , same rout music/:id
-router.delete("/music/:id", MusicCtrl.deleteAlbum);
+
+// Get one
+router.get("/music/:id",MusicCtrl.getMusicByID)
+
+
+// Create Route
+
+router.post("/music",MusicCtrl.createAlbum )
+
+// update route
+router.put('/music/:id',MusicCtrl.updateAlbum)
+
+// delete route
+router.delete('/music/:id', MusicCtrl.deleteAlbum);
 
 module.exports = router;
