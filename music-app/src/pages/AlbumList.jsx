@@ -14,3 +14,18 @@ const Delete =  styled.div`
     color:#ff0000;
     cursor: pointer;
 `
+/////////////////////////////////////////////////////////
+
+
+
+class AlbumList extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            albums: [],
+            isLoading: false
+        }
+    }
+
+}
+export default AlbumList;
