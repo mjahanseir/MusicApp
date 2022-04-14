@@ -48,8 +48,8 @@ class AlbumInsert extends Component{
     }
     render(){
         const {album, artist,year}=this.state;
-        return(
-
-        )
+        // return(
+        //
+        // )
     }
 }
