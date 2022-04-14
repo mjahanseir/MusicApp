@@ -13,7 +13,7 @@
         so start by adding 1 import line for each jsx the same as you did the 2 in NavBar
 
         then export (   } with the three Links, Logo, NavBar listed inside
-        the curly brackets... that's it for index.js and that's it for the component
+        the curly brackets... that's it for index.js and that's it for the components
         folder and the NavBar */
 
 import React, {Component} from 'react';

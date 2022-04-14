@@ -28,8 +28,8 @@ import {Link} from "react-router-dom";
         We're referencing bootstrap classes in our code here...
         thats another little perk we get with using styled-components
         Now that we have those HTML components declared,
-        we can create out main component
-        Same start as before.. we'll call this component Links
+        we can create out main components
+        Same start as before.. we'll call this components Links
         Once we have this set up, we'll start with a new kind of React thing
         called a fragment
         React allows for grouping together child elements into a fragment for
@@ -50,12 +50,12 @@ const Item = styled.div.attrs({
 
 /*
         inside this,
-        -->we'll add a Link component followed by
-        ----> a Collapse component...
+        -->we'll add a Link components followed by
+        ----> a Collapse components...
         -------> Inside Collapse, we'll add one List containing two Item components...
 
         get our stuff together...
-        The Link component is exactly that...
+        The Link components is exactly that...
              reacts version of an <a>...
              it takes two things: a target and some text to display.
              the target will be a path

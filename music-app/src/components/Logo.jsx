@@ -20,9 +20,9 @@ import logo from "../logo.svg";
         styled.a.attrs is actually method that will take an object as a parameter
         which is a list of css class assignments
 
-        in this case, create an <a> component and now want to set a
+        in this case, create an <a> components and now want to set a
         bootstrap class to it
-        the <a> component is Wrapper
+        the <a> components is Wrapper
         the class, to set is 'navbar-brand' so inside () for styled.a.attrs
         is {} which then has a className: 'navbar-brand' */
 
@@ -32,16 +32,16 @@ const Wrapper= styled.a.attrs({
 
 
 /*      In this case its empty but this part of the syntax allows us to also
-        set separate style on the component as well after setting a class
+        set separate style on the components as well after setting a class
 
         we'll do that in one of the other navbar files
                 ------------------------------------------------------
         So now we'll create our logo using Wrapper.
         create a class called Logo that extends Component.
-        add both render() and then return inside of that as our usual component
+        add both render() and then return inside of that as our usual components
         starting point.
 
-        add your Wrapper component inside of return (   )
+        add your Wrapper components inside of return (   )
         Its a react components so <Wrapper> and the ending tag as well and then
         we'll add some more code to it */
 class Logo extends Component {
@@ -74,7 +74,7 @@ class Logo extends Component {
         make sure its enclosed in {}
 
         Note that its lowercase to point to logo that we imported at the top and
-        not Logo our component.*/
+        not Logo our components.*/
 
 export default Logo;
 
