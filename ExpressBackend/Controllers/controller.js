@@ -1,107 +1,130 @@
 const Album = require("../db/models/music-model");
 
-getAllMusic = async (req,res) =>{
-  Album.find({},(err,albums)=>{
-    if(err){
-      return res.status(400).json({success:false,err})
+/////////////////////////////////             getAllMusic             ////////////////////////////////////////////////////////
+getAllMusic = async (req, res) => {
+  Album.find({}, function (err, albums) {
+    if (err) {
+      return res.status(400).json({ success: false, error: err });
     }
-    if(!albums.length){
-      return res.status(404).json({success:false,error:"No albums found"})
+
+    if (!albums.length) {
+      return res.status(404).json({ success: false, error: "No albums found" });
     }
-    return res.status(200).json({success:true,data:albums});
+
+    return res.status(200).json({ success: true, data: albums });
   });
-}
+};
 
-getMusicByID = async(req,res)=>{
-  // try {
-  //    const data= await Album.findById(req.params.id)
-  //    return res.status(200).json({data})
-  // } catch (error) {
-  //     return res.status(400).json({error})
-  // }
-  Album.findById(req.params.id,(err,album)=>{
-    if(err){
-      return res.status(400).json({success:false,err})
+/////////////////////////////////             getMusicByID             ////////////////////////////////////////////////////////
+getMusicByID = async (req, res) => {
+  // 5-5- GET ONE
+  Album.findById(req.params.id, function (err, album) {
+    if (err) {
+      return res.status(400).json({ success: false, error: err });
     }
-    if(!album){
-      return res.status(400).json({success:false,error:"Album not found."})
+    if (!album) {
+      return res
+        .status(404)
+        .json({ success: false, error: "Album not found." });
     }
+    return res.status(200).json({ success: true, data: album });
+  });
+};
 
-    return res.status(200).json({success:true,data:album});
-  })
-}
-
-
-createAlbum = async(req,res)=>{
+/////////////////////////////////             createAlbum             ////////////////////////////////////////////////////////
+createAlbum = (req, res) => {
+  // 5-5- CREATE ROUTE       //for form we use post
   const body = req.body;
-
-
-  if(!body){
-    return res.status(400).json({success:false,error:"You must specify album information"});
+  if (!body) {
+    return res
+      .status(400)
+      .json({ success: false, error: "You must specify album information" });
   }
 
-  const album = new Album(body)
-  if(!album){
-    return res.status(400).json({success:false,data:"Album creation failed"})
+  const album = new Album(body);
+
+  if (!album) {
+    return res
+      .status(400)
+      .json({ success: false, error: "Album creation failed" });
   }
 
-  album.save().then(()=>{
-    return res.status(200).json({success:true,id:album._id,message:"Album created."})
-  })
-      .catch(e=>{
-        return  res.status(400).json({e,message:"Album not created."})
-      })
+  album
+    .save()
+    //we have 2 : then and catch for get info for save a kind of try/catch in java
+    .then(() => {
+      return res.status(201).json({
+        success: true,
+        id: album._id,
+        message: "Album created.",
+      });
+    })
+    .catch((error) => {
+      return res.status(400).json({ error, message: "Album not created" });
+    });
+};
 
-}
-
-
-updateAlbum = async(req,res)=>{
+/////////////////////////////////             updateAlbum             ////////////////////////////////////////////////////////
+updateAlbum = async (req, res) => {
+  // 5-7- UPDATE ROUTE
   const body = req.body;
-
-  if(!body){
-    return res.status(400).json({success:false,error:"You must provide some data to update."});
+  if (!body) {
+    return res
+      .status(400)
+      .json({ success: false, error: "You must provide some data to update." });
   }
-
-  // find the document to be updated
-  Album.findOne({_id:req.params.id},(err,album)=>{
-    if(err){
-      return res.status(400).json({success:false,error:err})
+  // FIND the docyment to be update in the database
+  Album.findOne({ _id: req.params.id }, (err, album) => {
+    if (err) {
+      return res.status(400).json({ success: false, error: err });
     }
-    if(!album){
-      return res.status(400).json({success:false,error:"Album not found"})
+    if (!Album) {
+      return res.status(404).json({ success: false, error: "Album not found" });
     }
+    // other wise update
 
-    // update all the info in the browser album from the body album
-
+    ///////////////   Update all thte info in browser album from the body album
     album.album = body.album;
     album.artist = body.artist;
-    album.year= body.year;
+    album.year = body.year;
     album.artwork = body.artwork;
 
-    album.save().then(()=>{
-      return res.status(200).json({
-        success:true,id:album._id,
-        message:"Album updated."
+    album
+      .save()
+      .then(() => {
+        return res.status(200).json({
+          success: true,
+          id: album._id,
+          message: "Album updated.",
+        });
       })
-    }).catch(err=>{
-      return res.status(404).json({error:err,message:"Album not updated."})
-    })
+      .catch((error) => {
+        return res.status(404).json({ error, message: "Album not updated" });
+      });
+  }); //END OF findOne
+};
 
-  })
-}
-
-deleteAlbum = async(req,res)=>{
-
-  Album.findOneAndDelete({_id:req.params.id},(err,album)=>{
-    if(err){
-      return res.status(400).json({success:false,error:err});
-    }
-    if(!album){
-      return res.status(404).json({success:false,error:"Album not found"});
+/////////////////////////////////             deleteAlbum             ////////////////////////////////////////////////////////
+// 5-8- DELETE ROUTE
+deleteAlbum = async (req, res) => {
+  // identicall same as addone , check album
+  Album.findOneAndDelete({ _id: req.params.id }, function (err, album) {
+    if (err) {
+      return res.status(400).json({ success: false, error: err });
     }
 
-    return res.status(200).json({success:true,data:album});
+    if (!album) {
+      return res.status(404).json({ success: false, error: "Album not found" });
+    }
+    return res.status(200).json({ success: true, data: album });
   });
-}
+};
 
-module.exports ={getAllMusic,getMusicByID,createAlbum,updateAlbum,deleteAlbum}
+/////////////////////////////////             exports             ////////////////////////////////////////////////////////
+module.exports = {
+  getAllMusic,
+  getMusicByID,
+  createAlbum,
+  updateAlbum,
+  deleteAlbum,
+};

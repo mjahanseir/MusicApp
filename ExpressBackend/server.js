@@ -1,27 +1,22 @@
-const express = require("express");
-const app = express();
-const db = require("./db/connect");
-const cors = require('cors');
+const express = require("express"),
+  backend = express(),
+  db = require("./db/connect"),
+  router = require("./routes/routes"),
+  cors = require("cors");
+backend.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 
-const router = require("./routes/route");
-// app.use(bodyParser.urlencoded({ extended: false }))
+backend.use(express.json());
 
-// // parse application/json
-// app.use(bodyParser.json())
-app.use(express.json());
-app.use(cors({
-    origin:'*'
-}));
+backend.get("/", function (req, res) {
+  res.redirect("/api/music");
+});
 
-// Routes
-//Index Route
-app.get("/",(req,res)=>{
-    res.redirect("/api/music")
-})
+backend.use("/api", router);
 
-app.use('/api',router)
-
-
-app.listen(3010,()=>{
-    console.log(" listening on: 3010");
-})
+backend.listen(3001, function () {
+  console.log("Server started successfully");
+});

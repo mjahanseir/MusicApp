@@ -1,12 +1,17 @@
-const mongoose = require('mongoose');
-const DB ="mongodb://192.168.75.128:27017/music_app";
+const mongoose = require("mongoose");
 
-mongoose.connect(DB)
-    .then(()=>{console.log("connected to db.")})
-    .catch((e)=>{
-        console.error("connection error",e.message);
-    });
+///////////     2-    CREATE A CONNECTION TO THE MONGODB    ///////////////////////////
+const DB = "mongodb://192.168.75.128:27017/music_app";
 
-const dbase =mongoose.connection;
+mongoose
+  .connect(DB)
+  .then(() => {
+    console.log("Batabase connection  successful.");
+  })
+  .catch((e) => {
+    console.error("connection error", e.message);
+  });
+
+const dbase = mongoose.connection;
 
 module.exports = dbase;
