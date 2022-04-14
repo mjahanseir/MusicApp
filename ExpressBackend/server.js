@@ -1,7 +1,14 @@
 const express = require("express"),
-  backend = express(),
-  db = require("./db/connect"),
-  router = require("./routes/route");
+    backend = express(),
+    db = require("./db/connect"),
+    router = require("./routes/route"),
+    cors = require("cors");
+backend.use(
+    cors({
+      origin: "http://localhost:3000",
+    })
+);
+
 
 backend.use(express.json());
 
