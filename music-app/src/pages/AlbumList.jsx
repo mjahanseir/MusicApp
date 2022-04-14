@@ -29,6 +29,24 @@ class UpdateAlbum extends Component{
 }
 
 
+class DeleteAlbum extends Component{
+    deleteUser= event =>{
+        event.preventDefault()
+        if(window.confirm(
+            `Did you want to delete the album ${this.props.id} permanently?`
+        )){
+            /////////////////////////  npm install axios     "axios": "^0.26.1",
+            /////////////////////////  do api/index and come back
+            apis.deleteAlbumById(this.props.id);
+
+            window.location.reload();
+
+        }
+    }
+    render(){
+        return <Update onClick={this.updateUser}>Update</Update>
+    }
+}
 
 
 
