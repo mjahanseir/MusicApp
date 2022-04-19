@@ -5,9 +5,10 @@ const passportLocalMongoose = require("passport-local-mongoose");
 
 const UserSchema = new Schema({
   username: { type: String },
-  password: { type: String },
+  password: { type: String }
 });
 
 UserSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("User", UserSchema);
+
