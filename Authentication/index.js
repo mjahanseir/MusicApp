@@ -79,3 +79,20 @@ app.post(
   }),
   function (req, res) {}
 );
+
+///////////////////// Logout Form
+app.get("/logout", function (req, res) {
+  req.logOut();
+  res.redirect("/");
+});
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/login");
+}
+
+app.listen(3010, function () {
+  console.log("Server started");
+});
