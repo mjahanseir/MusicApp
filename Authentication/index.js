@@ -63,3 +63,19 @@ app.post("/register", function (req, res) {
     }
   );
 });
+
+
+///////////////////// Login Form
+
+app.get("/login", function (req, res) {
+  res.render("login");
+});
+
+app.post(
+  "/login",
+  passport.authenticate("Local", {
+    successRedirect: "/secret",
+    failureRedirect: "login",
+  }),
+  function (req, res) {}
+);
