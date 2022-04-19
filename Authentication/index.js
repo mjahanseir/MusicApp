@@ -64,7 +64,6 @@ app.post("/register", function (req, res) {
   );
 });
 
-
 ///////////////////// Login Form
 
 app.get("/login", function (req, res) {
@@ -79,7 +78,6 @@ app.post(
   }),
   function (req, res) {}
 );
-
 ///////////////////// Logout Form
 app.get("/logout", function (req, res) {
   req.logOut();
