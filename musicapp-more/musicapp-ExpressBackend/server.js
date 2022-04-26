@@ -19,7 +19,7 @@ const musicSchema= new mongoose.Schema({
 const Album = mongoose.model("music", musicSchema);
 //5
 backend.get('/',(req,res)=>
-res.redirect("/music"));
+    res.redirect("/music"));
 backend.get('/music',(req,res)=>
     {
         Album.find({},(err,albums)=>
@@ -100,7 +100,7 @@ backend.post('/music/',(req,res)=>
     }
 );
 
-backend.put('/music/',(req,res)=>
+backend.put('/music/:id',(req,res)=>
     {
         const body= req.body;
         if(!body)
@@ -117,10 +117,10 @@ backend.put('/music/',(req,res)=>
                     .status(401)
                     .json({success:false, error:"Album not found"});
 
-        album.album=body.album;
-        album.artist=body.artist;
-        album.year=body.year;
-        album.artwork=body.artwork;
+            album.album=body.album;
+            album.artist=body.artist;
+            album.year=body.year;
+            album.artwork=body.artwork;
         })
 
         album.save().then(()=> {
@@ -133,6 +133,26 @@ backend.put('/music/',(req,res)=>
         })
     }
 );
+
+backend.delete('/music/',(req,res)=>
+{
+    Album.findOneAndDelete (  { _id:req.params.id  } , function(err, album) {
+        if(err){
+            return res
+                .status(400)
+                .json( { success : false , error: err})
+        }
+        if(!album){
+            return res
+                .status(404)
+                .json( { success : false , error: "Album not found"})   }
+        return res
+            .status(200)
+            .json( { success : true , data:album})
+    });
+
+});
+
 
 
 backend.listen(3011,()=>console.log("server started"))
