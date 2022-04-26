@@ -32,3 +32,4 @@ class Link extends Component{
         );
     }
 }
+export default Link;
