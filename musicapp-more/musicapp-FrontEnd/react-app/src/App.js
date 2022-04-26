@@ -37,7 +37,6 @@ class App extends Component{
         );
     }
 }
-
 class TableRow extends Component{
     render(){
         return(
@@ -47,10 +46,8 @@ class TableRow extends Component{
                 <td> { this.props.dad.age }</td>
 
             </tr>
-
         )
     }
-
 }
 App.defaultProps={
     pName:"Jack",
