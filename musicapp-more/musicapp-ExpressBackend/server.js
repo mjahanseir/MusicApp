@@ -75,6 +75,31 @@ backend.get('/music/:id',(req,res)=>
         })
     }
 );
+backend.post('/music/',(req,res)=>
+    {
+        const body= req.body;
+        if(!body)
+            return res
+                .status(400)
+                .json({success:false, error:"specify album info"});
+        const album = new Album (body) ;
+        if(!album)
+            return res
+                .status(400)
+                .json({success:false, error:"False creation"});
+
+
+        album.save().then(()=> {
+            return res.status(200)
+                .json({sucess: true, id: album._id, message: "Album created"})
+                .catch(error => {
+                    return res.status(400)
+                        .json({success: false, error, message: "Not created"})
+                })
+        })
+    }
+);
+
 
 
 backend.listen(3011,()=>console.log("server started"))
