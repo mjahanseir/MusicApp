@@ -13,6 +13,8 @@ class Product extends Component{
                 <button className='m-2 btn btn-sm btn-success'>+</button>
                 <button className='m-2 btn btn-sm btn-danger'>-</button>
                 <button className='m-2 btn btn-sm btn-warning'>delete</button>
+
+                {/*region*/}
                 {/*<img src={this.imageUrl} alt=""/>*/}
 
                 {/*<ul>{list}</ul>*/}
@@ -21,7 +23,6 @@ class Product extends Component{
                 {/*        (   item, index) =>*/}
                 {/*            <li  key={index} > {item} </li>  )   }*/}
                 {/*</ul>*/}
-
 
                 {/*{this.count !== 0 ? (*/}
                 {/*    <>*/}
@@ -35,8 +36,8 @@ class Product extends Component{
                 {/*    <h1> THERE IS NO PRODUCT</h1>*/}
                 {/*)*/}
                 {/*}*/}
-                
-                
+                {/*endregion*/}
+
             </>
         )
     }
