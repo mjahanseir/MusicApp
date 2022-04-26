@@ -17,7 +17,17 @@ class Link extends Component{
     render() {
         return(
             <React.Fragment>
-
+                <Link to='/' className='navbar-brand'> MERN APPLICATION</Link>
+                <Collapse>
+                    <List>
+                        <Item>
+                            <Link to='/music/list' className='nav-link'> list Albums</Link>
+                        </Item>
+                        <Item>
+                            <Link to='/music/create' className='nav-link'> Create Album</Link>
+                        </Item>
+                    </List>
+                </Collapse>
             </React.Fragment>
         );
     }
