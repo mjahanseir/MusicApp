@@ -34,7 +34,7 @@ export {Links, Logo,NavBar}
         we created our navbar as separate pieces...
         logo then links then pulled them together to make the whole navbar
 
-        we also used react Link components and React Fragments
+        we also used react Links components and React Fragments
 
         At this point we're ready to commit our work and also publish...
         once done, we'll also marge this particular branch in and will be

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styled from "styled-components";
-import Links from "./link";
-import Logo from "./logo";
+import Links from "./Links";
+import Logo from "./Logo";
 
 const Container= styled.div.attrs({
     className:'container'

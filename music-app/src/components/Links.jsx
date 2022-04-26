@@ -1,6 +1,6 @@
 /*///////////////////////////////         step 2
         import the same stuff from react and styled-components as in the last file plus...
-        we'll also import {Link} from react-router-dom
+        we'll also import {Links} from react-router-dom
 
         This last one is what we'll use to create our links to our List and Create pages
 
@@ -50,38 +50,38 @@ const Item = styled.div.attrs({
 
 /*
         inside this,
-        -->we'll add a Link components followed by
+        -->we'll add a Links components followed by
         ----> a Collapse components...
         -------> Inside Collapse, we'll add one List containing two Item components...
 
         get our stuff together...
-        The Link components is exactly that...
+        The Links components is exactly that...
              reacts version of an <a>...
              it takes two things: a target and some text to display.
              the target will be a path
 
         notice how all of these components are added like regular html
-        we'll add the Link params similarly...
+        we'll add the Links params similarly...
                      to="/"     and       className="navbar-brand"
 
-        that goes inside the opening Link tag
-                 like <Link  to="" ... >
+        that goes inside the opening Links tag
+                 like <Links  to="" ... >
 
-               <Link to="/" className="navbar-brand">CWEB 602 MERN Application</Link>
+               <Links to="/" className="navbar-brand">CWEB 602 MERN Application</Links>
 
         We'll add one of these to each of the Item tags as well for our links to
         the list and create views
 
-        so for the first Item, we'll add a Link with
+        so for the first Item, we'll add a Links with
                  to="" set to /music/list
                  because that will be the route path to that view in our application
                  (we'll be setting this up later)
-        The Link text for this first one will be List Albums
+        The Links text for this first one will be List Albums
         its className="" will be nav-link
 
 
 
-        Now add the second Item Link the same way with the same className,
+        Now add the second Item Links the same way with the same className,
         the route path set to /music/create  and the text set to Create Album...
 
         Note these routes aren't what is in our backend

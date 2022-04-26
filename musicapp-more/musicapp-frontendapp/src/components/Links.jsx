@@ -13,7 +13,7 @@ const List= styled.div.attrs({
 const Item= styled.div.attrs({
     className:'collapse navbar-collapse'
 })``
-class Link extends Component{
+class Links extends Component{
     render() {
         return(
             <React.Fragment>
@@ -32,4 +32,4 @@ class Link extends Component{
         );
     }
 }
-export default Link;
+export default Links;
