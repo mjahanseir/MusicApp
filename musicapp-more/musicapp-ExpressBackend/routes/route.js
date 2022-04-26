@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const MusicCtrl = require("../Controllers/controller");
+const MusicCtrl = require("../controllers/controller");
 
 // 5-3- SHOW ROUTES    / 5-4- GET ALL
 router.get("/music", MusicCtrl.getAllMusic);
