@@ -1,4 +1,4 @@
-const Album = require("../db/models/music-model");
+const Album = require("../../../../../Downloads/cstprojects-sdc2130-19ecc5dbffb7/MusicApp/ExpressBackend/db/models/music-model");
 
 /////////////////////////////////             getAllMusic             ////////////////////////////////////////////////////////
 getAllMusic = async (req, res) => {
