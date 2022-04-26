@@ -100,6 +100,39 @@ backend.post('/music/',(req,res)=>
     }
 );
 
+backend.put('/music/',(req,res)=>
+    {
+        const body= req.body;
+        if(!body)
+            return res
+                .status(400)
+                .json({success:false, error:"Error"});
+        Album.findOne({_id: req.params.id}, (err, album)=>{
+            if(err)
+                return res
+                    .status(400)
+                    .json({success:false, error:err});
+            if(!album)
+                return res
+                    .status(401)
+                    .json({success:false, error:"Album not found"});
+
+        album.album=body.album;
+        album.artist=body.artist;
+        album.year=body.year;
+        album.artwork=body.artwork;
+        })
+
+        album.save().then(()=> {
+            return res.status(200)
+                .json({sucess: true, id: album._id, message: "Album created"})
+                .catch(error => {
+                    return res.status(400)
+                        .json({success: false, error, message: "Not created"})
+                })
+        })
+    }
+);
 
 
 backend.listen(3011,()=>console.log("server started"))
