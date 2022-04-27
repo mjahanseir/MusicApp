@@ -2,7 +2,7 @@
 
 import React, {Component, createContext} from "react";
 import styled from "styled-components";
-import logo from "../../../../../../Downloads/cstprojects-sdc2130-19ecc5dbffb7/MusicApp/music-app/src/logo.svg";
+import logo from "../logo.svg";
 
 const Wrapper= styled.a.attrs({
     className: 'navbar-brand'
