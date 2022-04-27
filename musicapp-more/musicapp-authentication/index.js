@@ -39,3 +39,42 @@ app.get("/secret", isLoggedIn, function (req, res) {
     res.render("secret");
 });
 
+///////////////////////Auth Route
+
+app.get("/register", function (req, res) {
+    res.render("register");
+});
+
+app.post("/register", function (req, res) {
+    req.body.username;
+    req.body.password;
+
+    User.register(
+        new User({ username: req.body.username }),
+        req.body.password,
+        function (error, user) {
+            if (error) {
+                console.log(error);
+                return res.render("register");
+            }
+            passport.authenticate("local")(req, res, function () {
+                res.redirect("/secret");
+            });
+        }
+    );
+});
+
+///////////////////// Login Form
+
+app.get("/login", function (req, res) {
+    res.render("login");
+});
+
+app.post(
+    "/login",
+    passport.authenticate("Local", {
+        successRedirect: "/secret",
+        failureRedirect: "login",
+    }),
+    function (req, res) {}
+);
