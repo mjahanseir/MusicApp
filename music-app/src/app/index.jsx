@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { NavBar } from "../../../../../../Downloads/cstprojects-sdc2130-19ecc5dbffb7/MusicApp/music-app/src/components";
-import { AlbumList, AlbumInsert, AlbumUpdate } from "../../../../../../Downloads/cstprojects-sdc2130-19ecc5dbffb7/MusicApp/music-app/src/pages";
+import { NavBar } from "../components";
+import { AlbumList, AlbumInsert, AlbumUpdate } from "../pages";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
