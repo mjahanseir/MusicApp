@@ -6,7 +6,7 @@ import apis from "../api";
 
 /////////////////////////set wrapper and other styles
 /////////////////////////Wrapper component for
-const Wrapper = styled.div`padding= 0 40px 0 40px;`;
+const Wrapper = styled.div`padding: 0 40px 0 40px;`;
 
 // div component for the update button for each row
 const Update = styled.div`
