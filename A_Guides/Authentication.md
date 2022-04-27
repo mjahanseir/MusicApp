@@ -250,3 +250,86 @@ These also would have to be written if we weren't getting them from the User obj
 That completes the set up of our server file.
 
 ### 6- Create Routes
+
+We can start by creating the authentication-related routes. First, the registration routes.
+
+Registration Routes
+
+The front end view for this is already done in the file register.ejs so we just need to create a route to render it:
+
+        app.get('/register', function(req,res){
+        res.render('register');
+        })
+
+This is very simple and just needs to present the user with a form to enter the username and password they want to use. The view will send the form data to the next route we need which will be the post route for this pair.
+
+Start with the skeleton first:
+
+        app.post('/register', function(req,res){
+        })
+
+The first code to add here is get references to the username and password being passed in:
+
+    req.body.username
+    req.body.password
+With these, we'll call the Register method that was added to the User model when we added passport-local-mongoose.
+
+    User.register(new User({username: req.body.username}), req.body.password, function(error,user){
+        if (error) {
+            console.log(error)
+            return res.render('register')
+        }
+        // Completion code here for after successful registration
+    })
+Note that the User constructor only includes the username and the password is separated. This is because we don't want to save the password directly. The Register method will take the password and hash it. It will then create a new User document containing the username, password hash and salt. The bit of code under that is just some error handling. There is a comment left though, under that. Once the user has been added, we have to decide what we want to do next. As a general rule, you either forward the user to the login page to log in using their newly created credentials or you log them in automatically with those credentials. We're going to do the latter.
+
+    User.register(new User({username: req.body.username}), req.body.password, function(error,user){
+        if (error) {
+            console.log(error)
+            return res.render('register')
+        }
+        // Completion code here for after successful registration
+        passport.authenticate('local')(req,res, function(){
+            res.redirect('/secret')
+        })
+    })
+That's it for registration. Now we create the log in routes.
+
+- Log In Routes
+
+As with registration, we display a form for the user. In this case, the form is for them to enter their username and password and then click the button to login.
+
+        app.get('/login', function(req,res){
+        res.render('login')
+        })
+Next we have another post route to do the processing for logging in. The is much simpler as we really just have to call the 'authenticate' method that is in passport which we got from User which was part of the passport-local-mongoose package. Calling this gives us access to two parameters for failed or successful login:
+
+        successRedirect
+        failureRedirect
+
+we can simply specify the route we want to redirect to in either case. If you want to do some additional processing, you can leave either of these or both out and handle these cases in the regular part of the code. Otherwise the main code block can remain blank.
+
+        app.post('/login', passport.authenticate('local', {
+        successRedirect: '/secret',
+        failureRedirect: '/login'
+        }), function(req,res){
+        
+        })
+Notice how the call to passport.authenticate is between our usual code for route and callback function. That's why it referred to as middleware. That's it for the login routes. The last route we need is the authenticated 'secret' route.
+
+- Authenticated Route
+
+The authenticated route is a simple get route but we need to be able to check if the requesting user is authenticated. This will configured as another middleware but we will write this as our own function. First, we'll create a function isLoggedIn to check. This function will have three parameters: req, res and next. It will get these from the route its used in. req will have a new method added to it by passport called isAuthenticated. We can use this and call next if it succeeds. Next() really just means 'continue as you were'. It will pass us along to whatever route we were headed to when we stopped in this middleware.
+
+        function isLoggedIn(req, res, next) {
+        if (req.isAuthenticated()) {
+        return next()
+        }
+        res.redirect('/login')
+        }
+Now we can write the secret route with this function added in as a middleware:
+
+        app.get('/secret', isLoggedIn, function(req,res){
+        res.render('secret')
+        })
+So we're headed to the /secret route but get stopped at isLoggedIn. We either go next() to the callback and render the secret view or get redirected to /login inside the isLoggedIn middleware function.
