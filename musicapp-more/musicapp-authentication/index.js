@@ -7,3 +7,5 @@ const express = require("express"),
     localStrategy = require("passport-local"),
     User = require("./model/user"),
     expressSession = require("express-session");
+
+mongoose.connect("mongodb://localhost:27017/auth_demo");
