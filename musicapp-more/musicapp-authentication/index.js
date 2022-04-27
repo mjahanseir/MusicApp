@@ -90,7 +90,6 @@ function isLoggedIn(req, res, next) {
     }
     res.redirect("/login");
 }
-
 app.listen(3010, function () {
     console.log("Server started");
 });
