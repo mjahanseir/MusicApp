@@ -1,5 +1,5 @@
-import Links from "../../../../../../Downloads/cstprojects-sdc2130-19ecc5dbffb7/MusicApp/music-app/src/components/Links";
-import Logo from "../../../../../../Downloads/cstprojects-sdc2130-19ecc5dbffb7/MusicApp/music-app/src/components/Logo";
-import NavBar from "../../../../../../Downloads/cstprojects-sdc2130-19ecc5dbffb7/MusicApp/music-app/src/components/NavBar";
+import Links from "../components/Links";
+import Logo from "../components/Logo";
+import NavBar from "../components/NavBar";
 
 export { Links, Logo, NavBar };
