@@ -12,3 +12,20 @@ mongoose.connect("mongodb://localhost:27017/auth_demo");
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(
+    expressSession({
+        secret: "sjhdklfhsdhfsdf24524s5fdsdfsdflklkfd85",
+        resave: false,
+        saveUninitialized: false,
+    })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new localStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
