@@ -11,7 +11,7 @@ const Wrapper= styled.a.attrs({
 class Logo extends Component {
     render() {
         return (
-            <Wrapper href="www.google.ca">
+            <Wrapper href={"www.google.ca"}>
                 <img src={logo} width="50" height="50" alt=""/>
             </Wrapper>
         );

@@ -1,4 +1,4 @@
-const Album = require("../db/models/music-mod");
+const Album = require("../db/models/music-model");
 
 /////////////////////////////////             getAllMusic             ////////////////////////////////////////////////////////
 getAllMusic = async (req, res) => {
