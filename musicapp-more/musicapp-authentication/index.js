@@ -29,3 +29,13 @@ passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+////////////////////////////////////////////// Routes //////////////////////////////////////////////
+
+app.get("/", function (req, res) {
+    res.render("home");
+});
+
+app.get("/secret", isLoggedIn, function (req, res) {
+    res.render("secret");
+});
+
