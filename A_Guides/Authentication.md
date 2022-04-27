@@ -69,6 +69,46 @@ Run your package installation. You will need to install the following:
 
 
 ### 3- Create a model for a user
+The first thing we need to do here is create our model file so create a basic js file inside the models directory. I called mine user.js.
+
+Much of this will be the same as what we've done previously. Follow the following steps:
+
+1. Create the basics you need to start:
+
+    const mongoose = require('mongoose')
+    const Schema = mongoose.Schema
+
+2. Define your Schema object
+    
+       const UserSchema = new Schema( {
+       username: {type: String, required: false},
+       password: {type: String, required: false}
+       } )
+
+
+3. Add plugin for passport. While it isn't necessarily required, this plugin saves a lot of effort later. Normally, you have to write your own code to perform authentication and registration of users. This plugin provides those methods:
+
+    authenticate - perform authentication
+    register - save a new user to mongo
+    serializeUser - add user info to the session
+    deserializeUser - read user info from the session
+
+Add the following code to the top, right after your first two lines and before your Schema definition
+
+        const passportLocalMongoose = require('passport-local-mongoose')
+
+
+Then add the following immediately after creating UserSchema and before you export your model
+
+            UserSchema.plugin(passportLocalMongoose)
+
+
+4. Finally, export your model
+
+    module.exports = mongoose.model('User', UserSchema)
+
+That's it for creating a user model.
+
 
 ### 4- Create views
 
