@@ -29,13 +29,44 @@ Passport acts as a middleware for our application. What this means is that it wi
 2. a response from the server back to the client
 
 Passport goes in between these two to authenticate the requesting user before the requested info will be provided. The result is:
-1- a request is made by a client browser to a server
-2- the server prompts the user to login or register as a user
-3- if #2 is completed successfully, the server will respond with the requested data
+1.  a request is made by a client browser to a server
+2.  the server prompts the user to login or register as a user
+3.  if #2 is completed successfully, the server will respond with the requested data
 In the following pages, we'll look at how to set this up.
 
 
+
+
 ### 2- General Process
+There are a series of steps that will be required to properly set up authentication. Ultimately, we'll need to define what a user is and be able to store users. We'll then need to use Passport along with this data to perform our authentication. We also need some way to 'register' users in addition to authenticating them. Finally, we'll need to be able to check whether a user is already authenticated.
+
+
+- Roadmap
+
+We'll start by defining a user. This will require creating a mongoose model as we did previously. We'll add a plugin to our model to handle some of the implementation details for handling the user.
+
+Next we'll set up all the supporting packages in our main application. While this will be similar to begin with, it will also entail some new packages such as passport and ejs.
+
+Next we'll create our different page views. Since this is a very simple app, our views will also be kept simple. While we could create a React view, it isn't necessary. The files we create will be ejs files and will contain basic html code.
+
+Finally, we'll define our additional routes. That will mean routes for logging in and also for registering. We will have one 'secret' route which will be protected and only accessible once logged in.
+
+
+- Initialization
+
+Create your main js file in a directory as your project directory and run npm init to get started. Create two directories here, one called models and one called views. Ensure the second is called 'views' as this will be important for ejs.
+
+Run your package installation. You will need to install the following:
+        
+        body-parser - to parse form data
+        ejs - this will be our view engine to create front facing pages
+        express
+        express-session - this will allow us to create sessions
+        mongoose
+        passport - main authentication package
+        passport-local - authentication strategy
+        passport-local-mongoose - helper for authentication with mongoose
+
 
 ### 3- Create a model for a user
 
