@@ -9,3 +9,6 @@ const express = require("express"),
     expressSession = require("express-session");
 
 mongoose.connect("mongodb://localhost:27017/auth_demo");
+
+app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({ extended: true }));
